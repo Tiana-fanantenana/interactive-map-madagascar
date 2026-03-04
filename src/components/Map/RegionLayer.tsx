@@ -1,19 +1,14 @@
 import { useEffect, useState } from 'react';
-import { GeoJSON, useMap } from 'react-leaflet';
+import { GeoJSON } from 'react-leaflet';
 import L from 'leaflet';
 import type { Region } from '../../types';
 import { REGIONS } from '../../data/regions';
 
-const GEOJSON_URL = 'https://raw.githubusercontent.com/gregoiredavid/france-geojson/master/regions.geojson';
-// On utilise un GeoJSON simplifié de Madagascar depuis datahub.io
-const MADA_GEOJSON_URL = 'https://raw.githubusercontent.com/datasets/geo-boundaries-world-110m/master/countries/MDG.geo.json';
-
 interface Props {
-  selectedRegion: Region | null;
   onRegionSelect: (region: Region) => void;
 }
 
-export default function RegionLayer({ selectedRegion, onRegionSelect }: Props) {
+export default function RegionLayer({ onRegionSelect }: Props) {
   const [geoData, setGeoData] = useState<any>(null);
 
   useEffect(() => {

@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import { MapContainer as LeafletMap, TileLayer, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import type { Region, MapLayer } from '../../types';
@@ -18,15 +18,15 @@ L.Icon.Default.mergeOptions({
 const TILE_LAYERS: Record<MapLayer, { url: string; attribution: string }> = {
   standard: {
     url: 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
-    attribution: '© CartoDB © OpenStreetMap',
+    attribution: ' CartoDB  OpenStreetMap',
   },
   satellite: {
     url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
-    attribution: '© Esri',
+    attribution: ' Esri',
   },
   terrain: {
     url: 'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',
-    attribution: '© OpenTopoMap',
+    attribution: ' OpenTopoMap',
   },
 };
 
@@ -67,7 +67,7 @@ export default function MapContainerWrapper({ activeLayer, selectedRegion, onReg
         url={TILE_LAYERS[activeLayer].url}
         attribution={TILE_LAYERS[activeLayer].attribution}
       />
-      <RegionLayer selectedRegion={selectedRegion} onRegionSelect={onRegionSelect} />
+      <RegionLayer onRegionSelect={onRegionSelect} />
       {showPOI && <MarkerLayer pois={filteredPOI} />}
       <FlyToRegion region={selectedRegion} />
     </LeafletMap>
